@@ -24,6 +24,8 @@ class MainViewModel : ObservableObject {
     @Published var selectedItem : ImageItem?
     
     @Published var blur : CGFloat = 0
+    
+    @Published var isOpenForPreview = false
 
     init() {
         loadItems()
@@ -72,5 +74,14 @@ class MainViewModel : ObservableObject {
         addItem(selectedItem!)
         selectedItem = nil
         blur = 0
+        isOpenForPreview = false
+    }
+    
+    func startPreview(item : RealmImageItem) {
+        isEditing = true
+        let imgItem = ImageItem(name: item.name, image: item.uiImage, isFace: item.isFace)
+        selectedItem = imgItem
+        blur = 9
+        isOpenForPreview = true
     }
 }

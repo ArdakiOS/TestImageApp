@@ -101,7 +101,10 @@ struct EditingView : View {
         }
         .task {
             if let img = viewModel.selectedItem?.image{
-                await viewModel.checkForFaces(in: img)
+                if !viewModel.isOpenForPreview{
+                    await viewModel.checkForFaces(in: img)
+                }
+                
             }
         }
     }

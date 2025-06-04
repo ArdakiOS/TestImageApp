@@ -12,6 +12,9 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             Color.mainBg.ignoresSafeArea()
+                .onTapGesture {
+                    dismissKeyboard()
+                }
             MainListView(viewModel: viewModel)
                 .blur(radius: viewModel.blur)
             

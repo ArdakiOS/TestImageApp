@@ -42,6 +42,11 @@ struct ImageGridView: View {
     func createGrid(col: Int) -> some View {
         ForEach(filteredItems.enumerated().filter { $0.offset % 2 == col }.map(\.element), id: \.self) { item in
             GridImageCell(item: item)
+                .onTapGesture {
+                    withAnimation {
+                        viewModel.startPreview(item: item)
+                    }
+                }
         }
     }
     
